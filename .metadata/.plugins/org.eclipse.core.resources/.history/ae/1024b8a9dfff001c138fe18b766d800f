@@ -1,0 +1,146 @@
+package com.supermark.models;
+
+public class Domicilio {
+	private Integer id;
+	private String barrio;
+	private String calle;
+	private String entre_calle1;
+	private String entre_calle2;
+	private Integer numero;
+	private String instructivo_de_entrega;
+	private Integer piso;
+	private String dpto;
+	
+	
+	public Domicilio(Integer id) {
+		this.id = id;
+	}
+	
+	
+	
+	
+
+	public Domicilio(Integer id, String barrio, String calle, String entre_calle1, String entre_calle2, Integer numero,
+			String instructivo_de_entrega, Integer piso, String dpto) {
+		super();
+		this.id = id;
+		this.barrio = barrio;
+		this.calle = calle;
+		this.entre_calle1 = entre_calle1;
+		this.entre_calle2 = entre_calle2;
+		this.numero = numero;
+		this.instructivo_de_entrega = instructivo_de_entrega;
+		this.piso = piso;
+		this.dpto = dpto;
+	}
+
+
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public String getBarrio() {
+		return barrio;
+	}
+
+
+
+	public void setBarrio(String barrio) {
+		this.barrio = barrio;
+	}
+
+
+
+	public String getCalle() {
+		return calle;
+	}
+
+
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+
+
+	public String getEntre_calle1() {
+		return entre_calle1;
+	}
+
+
+
+	public void setEntre_calle1(String entre_calle1) {
+		this.entre_calle1 = entre_calle1;
+	}
+
+
+
+	public String getEntre_calle2() {
+		return entre_calle2;
+	}
+
+
+
+	public void setEntre_calle2(String entre_calle2) {
+		this.entre_calle2 = entre_calle2;
+	}
+
+
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+
+
+	public String getInstructivo_de_entrega() {
+		return instructivo_de_entrega;
+	}
+
+
+
+	public void setInstructivo_de_entrega(String instructivo_de_entrega) {
+		this.instructivo_de_entrega = instructivo_de_entrega;
+	}
+
+
+
+	public Integer getPiso() {
+		return piso;
+	}
+
+
+
+	public void setPiso(Integer piso) {
+		this.piso = piso;
+	}
+
+
+
+	public String getDpto() {
+		return dpto;
+	}
+
+
+
+	public void setDpto(String dpto) {
+		this.dpto = dpto;
+	}
+	
+}
+

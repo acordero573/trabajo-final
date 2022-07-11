@@ -1,0 +1,74 @@
+package com.supermark.service;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.supermark.models.Domicilio;
+
+public class CRUDDomicilio {
+	private Conexion conexion;
+	private String sql;
+	
+	public CRUDDomicilio() {
+		super();
+		this.conexion = new Conexion("supermark");
+		this.conexion.connect();//Abre la conexion
+		this.sql = "";
+	}
+	
+	public Domicilio register(Domicilio dom) {
+//		CRUDLocalidad cl = new CRUDLocalidad();
+//		Localidad localidad = cl.getLocalidad();
+		this.sql = "INSERT INTO Domicilio "+
+				"(barrio, calle, entre_calle1, entre_calle2, numero, piso, dpto, instructivo_de_entrega) "+
+				"VALUE ('"+
+				dom.getBarrio()+"','"+
+				dom.getCalle()+"','"+
+				dom.getEntre_calle1()+"','"+
+				dom.getEntre_calle2()+"',"+
+				dom.getNumero()+","+
+				dom.getPiso()+",'"+
+				dom.getDpto()+"','"+
+				dom.getInstructivo_de_entrega()+"')";
+		try {
+			PreparedStatement stmt = conexion.getConn().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			int filas = stmt.executeUpdate();
+			if(filas>0) {
+				ResultSet rs = stmt.getGeneratedKeys();
+				while(rs.next()) {
+					dom.setId(rs.getInt(1));
+				}
+			}
+			System.out.println("Domicilio registrado");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dom;
+	}
+	
+	public Domicilio getDomicilio(Integer id) {
+		this.sql = "SELECT barrio, calle, entre_calle1, entre_calle2, numero, piso, dpto, instructivo_de_entrega FROM domicilio "+
+				"WHERE domicilio.id="+id;
+		Domicilio dom = null;
+		try {
+			conexion.setRs(conexion.getStmt().executeQuery(sql));
+			dom = new Domicilio(
+						id,
+						conexion.getRs().getString("barrio"),
+						conexion.getRs().getString("calle"),
+						conexion.getRs().getString("entre_calle1"),
+						conexion.getRs().getString("entre_calle2"),
+						conexion.getRs().getInt("numero"),
+						conexion.getRs().getInt("piso"),
+						conexion.getRs().getString("dpto"),
+						conexion.getRs().getString("instructivo_de_entrega")
+						
+						);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dom;
+	}
+}
